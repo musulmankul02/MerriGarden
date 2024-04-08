@@ -1,0 +1,62 @@
+{% load static %}
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-column footer-about">
+                        <h3 class="footer-title">О нас</h3>
+                        <p class="footer-about-text">{{settings.descriptions|safe}}</p>
+                    </div>
+                </div>
+                <div class="col-md-3 offset-md-1">
+                    <div class="footer-column footer-explore clearfix">
+                        <h3 class="footer-title">Меню</h3>
+                        <ul class="footer-explore-list list-unstyled">
+                            <li><a href="{% url 'index' %}">Главная</a></li>
+                            <li><a href="{% url 'about' %}">О нас</a></li>
+                            <li><a href="{% url 'team' %}">Команда</a></li>
+                            <li><a href="{% url 'gallery' %}">Галерея</a></li>
+                            <li><a href="{% url 'news' %}">Новости</a></li>
+                            <li><a href="{% url 'contact' %}">Контакты</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="footer-column footer-contact">
+                        <h3 class="footer-title">Контакты</h3>
+                        <p class="footer-contact-text">{{settings.locations}}
+                        </p>
+                        <div class="footer-contact-info">
+                            <p class="footer-contact-phone"><span class="flaticon-call"></span>{{settings.phone}}</p>
+                            <p class="footer-contact-mail">{{settings.email}}</p>
+                        </div>
+                        <div class="footer-about-social-list">
+                            {% if settings.instagram %}
+                            <a href="{{settings.instagram}}"><i class="ti-instagram"></i></a>
+                            {% endif %}
+                            {% if settings.twitter %}
+                            <a href="{{settings.twitter}}"><i class="ti-twitter"></i></a>
+                            {% endif %}
+                            {% if settings.facebook %}
+                            <a href="{{settings.facebook}}"><i class="ti-facebook"></i></a>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-bottom-inner">
+                        <p class="footer-bottom-copy-right">© Copyright 2023 by <a href="#">Нурай</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

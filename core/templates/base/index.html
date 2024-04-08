@@ -1,0 +1,267 @@
+{% extends 'include/homepage.html' %}
+{% load static %}
+{% block content %}
+    <!-- Preloader -->
+    <div class="preloader-bg"></div>
+    <div id="preloader">
+        <div id="preloader-status">
+            <div class="preloader-position loader"> <span></span> </div>
+        </div>
+    </div>
+    <!-- Progress scroll totop -->
+    <div class="progress-wrap cursor-pointer">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- Navbar -->
+    {% include "include/header.html" %}
+    <!-- Slider -->
+    <header class="header slider-fade">
+        <div class="owl-carousel owl-theme">
+            <!-- The opacity on the image is made with "data-overlay-dark="number". You can change it using the numbers 0-9. -->
+            {% for slide in slide %}
+            <div class="text-center item bg-img" data-overlay-dark="2" data-background="{{slide.image.url}}">
+                <div class="v-middle caption">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1 bg-main-with-transparent">
+                                {{slide.title|safe}}
+                                
+                                <div class="butn-light mt-30 mb-30"> <a href="{% url 'list_price' %}" 
+                                    ><span>Прайс</span></a> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- slider reservation -->
+        <div class="reservation">
+            <a href="tel:8551004444">
+                <div class="icon d-flex justify-content-center align-items-center">
+                    <i class="flaticon-call"></i>
+                </div>
+                <div class="call"><span>{{settings.phone}}</span> <br>забронировать</div>
+            </a>
+        </div>
+    </header>
+    <!-- About -->
+    <section class="about section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
+                    <div class="section-subtitle">{{condiction.title}}</div>
+                    <div class="section-title">{{condiction.name}}</div>
+                    <p>{{condiction.descriptions|safe}}</p>
+                    <!-- call -->
+                    <div class="reservations">
+                        <div class="icon"><span class="flaticon-call"></span></div>
+                        <div class="text">
+                            <p>Забронировать</p> <a href="tel:855-100-4444">{{settings.phone}}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp">
+                    <img src="{{condiction.image1.url}}" alt="" class="mt-90 mb-30 br-20">
+                </div>
+                <div class="col col-md-3 animate-box" data-animate-effect="fadeInUp">
+                    <img src="{{condiction.image2.url}}" alt="" class="br-20">
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    <!-- Rooms -->
+    <section class="rooms1 section-padding bg-cream" data-scroll-index="1">
+        <div class="container">
+            <div class="row">
+                {% for news in news %}
+                <div class="col-md-4">
+                    <div class="item br-20">
+                        <div class="position-re o-hidden"><img src="{{news.image.url}}" alt=""></div>
+                        <div class="con">
+                            <h5><a href="{% url 'blog_news' news.id %}">{{news.name}}</a> </h5>
+                            <div class="line"></div>
+                            <div class="row facilities">
+                                <div class="col col-md-5 text-end">
+                                    <div class="permalink">
+                                        <a href="{% url 'blog_news' news.id %}">
+                                            Подробнее<i class="ti-arrow-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+           
+        </div>
+    </section>
+    
+    {% if video.url%}
+    <!-- Promo Video -->
+    <section class="video-wrapper video section-padding bg-img bg-fixed" data-overlay-dark="3"
+        data-background="{{video.image.url}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2 text-center">
+                    <div class="section-subtitle"><span>{{setting.title}}</span></div>
+                    <div class="section-title"><span>{{video.title}}</span></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center col-md-12">
+                    <a class="vid" href="{{video.url}}">
+                        <div class="vid-butn">
+                            <span class="icon">
+                                <i class="ti-control-play"></i>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    {% endif %}
+    <!-- Facilties -->
+    <section class="facilties pt-60">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-subtitle">{{condiction.title}}</div>
+                    <div class="section-title">Услуги</div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <!-- Services -->
+    <section class="services">
+        <div class="container">
+            {% for usluga in usluga %}
+            <div class="row">
+                <div class="col-md-6 p-0 animate-box" data-animate-effect="fadeInLeft">
+                    <div class="img left brl-20">
+                        <a href="#"><img src="{{usluga.image.url}}" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-md-6 p-0 bg-cream valign animate-box brr-20" data-animate-effect="fadeInRight">
+                    <div class="content">
+                        <div class="cont text-left">
+                            <h4>{{usluga.name}}</h4>
+                            <p>{{usluga.descriptions|safe}}</p>
+                            <div class="butn-dark br-20"> <a href="#testimonials"><span>Заказать услугу</span></a> </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <br>
+            {% endfor %} 
+           
+        </div>
+    </section>
+    <!-- Boss -->
+    <section class="section-padding-boss">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-subtitle"><span>{{condiction.title}}</span></div>
+                    <div class="section-title">Команда</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-md-6 animate-box" data-animate-effect="fadeInUp">
+                    <img src="{{boss.image_boss.url}}" alt="" class="br-20">
+                </div>
+                <div class="col-md-6 mb-30 animate-box" data-animate-effect="fadeInUp">
+                    <div class="section-subtitle"></div>
+                    <div class="section-title">{{boss.name}}</div>
+                    <p>{{boss.about_boss|safe}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- News -->
+    <section class="news section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="owl-carousel owl-theme">
+                        {% for team in team %}
+                        <div class="item br-20">
+                            <div class="position-re o-hidden br-20"> 
+                                <img class="br-20" src="{{team.image.url}}" alt="">
+                            </div>
+                            <div class="con br-20">
+                                <h5><a>{{team.name}}</a></h5>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Reservation & Booking Form -->
+    <section class="testimonials" id='testimonials'>
+        <div class="background bg-img bg-fixed section-padding pb-0" data-background="{% static 'img/merrigarden/banner/2.jpg' %}"
+            data-overlay-dark="2">
+            <div class="container">
+                <div class="row">
+                    <!-- Reservation -->
+                    <div class="col-md-5 mb-30 mt-30">
+                        <div class="reservations mb-30">
+                            <div class="icon color-1"><span class="flaticon-call"></span></div>
+                            <div class="text">
+                                <p class="color-1">Забронировать</p> <a class="color-1" href="tel:">{{settings.phone}}</a>
+                                
+                            </div>
+                        </div>
+                        <p><i class="ti-check"></i><small>Позвоните нам</small></p>
+                    </div>
+                    <!-- Booking From -->
+                    {% include 'include/form.html' %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Clients -->
+    <section class="clients">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="owl-carousel owl-theme">
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{% static 'img/clients/1.png' %}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{% static 'img/clients/2.png' %}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{% static 'img/clients/3.png' %}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{% static 'img/clients/4.png' %}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{% static 'img/clients/5.png' %}" alt=""></a>
+                        </div>
+                        <div class="clients-logo">
+                            <a href="#0"><img src="{% static 'img/clients/6.png' %}" alt=""></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    {% include "include/footer.html" %}
+    <!-- jQuery -->
+    
+{% endblock %}
